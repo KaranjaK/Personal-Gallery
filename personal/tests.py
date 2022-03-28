@@ -93,7 +93,7 @@ class TestImage(TestCase):
         self.assertTrue(len(found_images) == 1)
 
     def test_search_image_by_category(self):
-        category = 'home'
+        category = 'mtaa'
         found_img = self.image_test.search_by_category(category)
         self.assertTrue(len(found_img) > 1)
 
