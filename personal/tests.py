@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.test import TestCase
 from .models import Category, Location, Image
 
@@ -10,6 +11,11 @@ class CategoryTest(TestCase):
 
     def test_instance(self):
         self.assertTrue(isinstance(self.category, Category))
+
+    def test_get_category(self):
+        self.location.save_category()
+        category = Category.get_category()
+        self.assertTrue(len(category) > 0)
     
     def test_save_category(self):
         self.category.save_category()
