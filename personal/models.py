@@ -1,7 +1,9 @@
+from tkinter.tix import Tree
 from django.db import models
 
 # Create your models here.
 class Category(models.Model):
+    id = models.CharField(primary_key=True,max_length=20)
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -15,22 +17,22 @@ class Category(models.Model):
 
 
 class Location(models.Model):
+    id = models.CharField(primary_key=True, max_length=20)
     name = models.CharField(max_length=60)
 
     @classmethod
-    def get_locations(cls):
-        locations = Location.objects.all()
-        return locations
-
     def __str__(self):
         return self.name
 
-    @classmethod
-    def update_location(cls, id, value):
-        cls.objects.filter(id=id).update(image=value)
+    def get_locations():
+        locations = Location.objects.all()
+        return locations
 
     def save_location(self):
         self.save()
+
+    def update_location(cls, id, value):
+        cls.objects.filter(id=id).update(image=value)
 
     def delete_location(self):
         self.delete()
@@ -46,20 +48,17 @@ class Image(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     @classmethod
-    def filter_by_location(cls, location):
+    def filter_by_location(location):
         image_location = Image.objects.filter(location__name=location).all()
         return image_location
 
-    @classmethod
     def update_image(cls, id, value):
         cls.objects.filter(id=id).update(image=value)
 
-    @classmethod
     def get_image_by_id(cls, id):
         image = cls.objects.filter(id=id).all()
         return image
 
-    @classmethod
     def search_image(cls, category):
         images = cls.objects.filter(category__name__icontains=category)
         return images
