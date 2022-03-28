@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load static %}
 
 <!DOCTYPE html>
 
@@ -14,6 +15,7 @@
 
   {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   {% endblock %}
 
 </head>
