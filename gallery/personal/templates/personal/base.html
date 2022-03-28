@@ -1,5 +1,7 @@
 {% load bootstrap4 %}
+
 <!DOCTYPE html>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -15,6 +17,9 @@
   {% endblock %}
 
 </head>
+<header>
+    {% include 'personal/navbar.html' %}
+</header>
 <body>
     {% block content %} <h1 class='text-center'>Picture Perfect</h1> {%endblock%}
 
