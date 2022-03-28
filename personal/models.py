@@ -1,4 +1,3 @@
-from tkinter.tix import Tree
 from django.db import models
 
 # Create your models here.
@@ -32,7 +31,7 @@ class Location(models.Model):
         self.save()
 
     def update_location(cls, id, value):
-        cls.objects.filter(id=id).update(image=value)
+        cls.objects.filter(id=id).update(name=value)
 
     def delete_location(self):
         self.delete()
