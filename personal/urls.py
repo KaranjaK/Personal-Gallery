@@ -5,6 +5,10 @@ from . import views
 
 urlpatterns=[
     url('^$',views.home,name = 'Home'),
+    url(r'^location/(?P<location>\w+)/', views.image_location, name='location'),
+    url(r'^category/(?P<category>\w+)/', views.image_category, name='category'),
+
 ]
 if settings.DEBUG:
-    urlpatterns+=static(settings.MEDIA_URL, Document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns+=static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
