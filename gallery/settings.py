@@ -15,6 +15,9 @@ import os
 import django_heroku
 import dj_database_url
 from decouple import config,Csv
+import cloudinary
+import cloudinary.api
+import cloudinary.uploader
 
 MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
@@ -163,6 +166,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # configuring the location for media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+cloudinary.config( 
+  cloud_name = "diib1bge2", 
+  api_key = "794333435498654", 
+  api_secret = "qeoOzKExZp9rsoHQF1Wm0ui2_FA" 
+)
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
