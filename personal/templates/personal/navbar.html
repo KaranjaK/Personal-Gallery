@@ -28,7 +28,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <span id="locations">
-                {% for category in categories %}
+                {% for category in category %}
                     <a class="btn btn-outline-info btn-sm" id="btn"
                        href="/category/{{category.name}}">{{category.name}}</a>
                 {%endfor%}
