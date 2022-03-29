@@ -1,0 +1,13 @@
+ {% include 'personal/base.html' %}
+
+ {% block content %}
+    {% if searched%}
+        <h1>Your search results are {{searched}}</h1>
+        <br>
+        {% for result in results %}
+            {{result}}
+        {% endfor %}
+    {%else%}
+        <h1>Your search did not match any of the data available </h1>
+    {% endif %}
+ {% endblock %}
