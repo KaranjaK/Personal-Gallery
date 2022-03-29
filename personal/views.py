@@ -27,7 +27,7 @@ def search_result(request):
     if request.method == 'POST':
         searched = request.POST['searched']
         results = Image.objects.filter(category__name=searched)
-        return render(request, 'personal/search_results.html', {'searched':searched, 'results':results})
+        return render(request, 'personal/search_results.html', {'searched':searched, 'search':results})
     else:
         message = "The category you provided did not march any Categories we have!!"
         return render(request, 'personal/search_results.html', {"message": message})

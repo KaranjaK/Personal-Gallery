@@ -1,7 +1,9 @@
-{% include 'personal/base.html' %}
+{% extends 'personal/base.html' %}
 
 {% block content%}
-    <div class="container-fluid">
+{{block.super}}
+
+    <div class="container-fluid jumbotron text-center">
          <div class="row">
             <div class="col-md-7">
                 <h3>Gallery</h3>
@@ -15,25 +17,29 @@
             {% for image in images %}
             <div class="card" data-toggle="modal" data-target="#{{image.id}}">
                 <img src="{{image.image.url}}" alt="{{image.name}}" class="card-img">
+                <small id="photoDesc">{{image.name}}</small>
             </div>
 
 
             <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                    <div class="modal-content modalcard">
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
                         <div class="modal-header">
                             <h5 class="modal-title" id="imageheader">{{image.name}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        <!-- Modal Body -->
                         <div class="modal-body">
                             <img src="{{image.image.url}}" alt="{{image.name}}" class="img-fluid">
                             <p class="imgdesc text-center">{{image.description}}</p>
                             <span class="btn btn-sm btn-outline-success">{{image.category}}</span> <a
                                 href="/location/{{image.location}}" class="btn btn-sm btn-outline-info">{{image.location}}</a>
                         </div>
+                        <!-- Modal Footer -->
                         <div class="modal-footer">
                             <input class="form-control input-lg" type="text"
                                    value="{{image.image.url}}" id="{{image.id}}.url">
