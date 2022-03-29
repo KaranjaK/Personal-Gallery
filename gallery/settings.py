@@ -72,6 +72,7 @@ INSTALLED_APPS = [
 
     'personal',
     'bootstrap4',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -111,7 +112,7 @@ WSGI_APPLICATION = 'gallery.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'gallery',
         'USER': 'kk',
         'PASSWORD': 'admin101',
