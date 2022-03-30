@@ -1,13 +1,52 @@
  {% extends 'personal/base.html' %}
 
  {% block content %}
-    {% if searched%}
+ {{block.super}}
+    <div class="container-fluid jumbotron text-center">
+        {% if searched%}
         <h1>Your search results are {{searched}}</h1>
         <br>
-        {% for result in results %}
-            {{result}}
+        <div class="card-columns">
+            {% for result in search %}
+            <div class="card" data-toggle="modal" data-target="#{{result.id}}">
+                <img src="{{result.image.url}}" alt="{{result.name}}" class="card-img">
+                <small id="photoDesc">{{result.name}}</small>
+            </div>
+            
+            <div class="modal fade " id="{{result.id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageheader">{{result.name}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+                            <img src="{{result.image.url}}" alt="{{result.name}}" class="img-fluid">
+                            <p class="imgdesc text-center">{{image.description}}</p>
+                            <span class="btn btn-sm btn-outline-success">{{result.category}}</span> <a
+                                href="/location/{{result.location}}" class="btn btn-sm btn-outline-info">{{result.location}}</a>
+                        </div>
+                        <!-- Modal Footer -->
+                        <div class="modal-footer">
+                            <input class="form-control input-lg" type="text"
+                                   value="{{result.image.url}}" id="{{result.id}}.url">
+                            <button class="btn btn-success btn-sm" onclick="copyLink('{{result.id}}.url')">Copy</button>
+                            <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
+        </div>
     {%else%}
-        <h1>Your search did not match any of the data available </h1>
+        <h1>Your search did not match any of the data available!!</h1>
     {% endif %}
+    </div>
  {% endblock %}
+  

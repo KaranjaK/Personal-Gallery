@@ -2,6 +2,8 @@ from unicodedata import category
 from django.shortcuts import render
 
 from .models import Image, Location, Category
+from django.db.models import Q
+from django.views.generic.list import ListView
 
 # Create your views here.
 
@@ -23,10 +25,10 @@ def image_category(request, category):
     return render(request, 'personal/category.html', {'category_images': images})
 
 # Search 
-def search_result(request):
+def search_results(request):
     if request.method == 'POST':
         searched = request.POST['searched']
-        results = Image.objects.filter(category__name=searched)
+        results = Image.objects.filter(Q(category__name__icontains=searched) | Q(location__name__icontains=searched))
         return render(request, 'personal/search_results.html', {'searched':searched, 'search':results})
     else:
         message = "The category you provided did not march any Categories we have!!"
