@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <h2>Picture Perfect</h2>
+  <h2 id="runningheader">Picture Perfect</h2>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -16,7 +16,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <span id="locations">
                 {% for location in locations %}
-                    <a class="btn btn-outline-info btn-sm" id="btn"
+                    <a class="btn btn-outline-seconday btn-lg" id="btn"
                        href="/location/{{location.name}}">{{location.name}}</a>
                 {%endfor%}
              </span>
@@ -29,7 +29,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <span id="locations">
                 {% for category in category %}
-                    <a class="btn btn-outline-info btn-sm" id="btn"
+                    <a class="btn btn-outline-seconday btn-lg" id="btn"
                        href="/category/{{category.name}}">{{category.name}}</a>
                 {%endfor%}
              </span>
@@ -39,7 +39,7 @@
     <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method=POST>
       {% csrf_token %}
       <input class="form-control mr-sm-2" name="searched" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-success btn-sm" type="submit">Search</button>
     </form>
   </div>
 </nav>
